@@ -44,10 +44,10 @@ const searchForm = document.querySelector('#searchForm');
 // Cautarea masinilor dupa key-ul 'model'
 searchForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  srcearchWishCar();
+  searchWishCar();
 });
 
-function srcearchWishCar() {
+function searchWishCar() {
   const wishCar = searchCar.value;
   cars.forEach((car) => {
     if (car.model !== wishCar) return;
