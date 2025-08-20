@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage - Hyundai Car Shop</title>
+    <style>
+      .check-btn {
+        background-color: #04aa6d;
+        border: none;
+        border-radius: 8px;
+        color: white;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+      .search-btn {
+        background-color: #0a87b4;
+        border: none;
+        border-radius: 8px;
+        color: white;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+      .search {
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <p><a href="./contact/contact.html">Hyundai Car Shop</a></p>
+      <nav>
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./latest-model/index.html">Latest Model</a></li>
+          <li><a href="./contact/index.html">Contact</a></li>
+        </ul>
+        <hr />
+      </nav>
+    </header>
+
+    <main>
+      <section class="container">
+        <div>
+          <label for="sort-options">Sort by:</label>
+          <select id="sort-options" name="sort-options">
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="alphabetic-asc">Alphabetic: A to Z</option>
+            <option value="alphabetic-desc">Alphabetic: Z to A</option>
+          </select>
+        </div>
+        <div>
+          <p>Select Model:</p>
+          <label for="kona">Kona</label>
+          <input type="checkbox" id="kona" name="model" value="Kona" />
+          <label for="tucson">Tucson</label>
+          <input type="checkbox" id="tucson" name="model" value="Tucson" />
+          <label for="santa-fe">Santa Fe</label>
+          <input type="checkbox" id="santa-fe" name="model" value="Santa Fe" />
+          <label for="i-30">i-30</label>
+          <input type="checkbox" id="i-30" name="model" value="i-30" />
+        </div>
+        <br />
+        <div>
+          <label for="price-slider">Price range:</label>
+          <input
+            type="range"
+            id="price-slider"
+            name="price"
+            min="0"
+            max="0"
+            step="1000"
+            value="50000"
+            class="price-class"
+          />
+
+          <span id="price-value"></span>
+        </div>
+        <br />
+        <form id="searchForm">
+          <label for="searchCar">Search you dream car: </label>
+          <input
+            type="text"
+            name="search"
+            id="searchCar"
+            placeholder="Search..."
+            class="search"
+          />
+          <input
+            class="search-btn"
+            id="searchBtn"
+            type="submit"
+            value="Search"
+          />
+        </form>
+        <form id="radioForm">
+          <p>Is on sale</p>
+          <label for="true">Yes</label>
+          <input type="radio" name="Sale" value="true" class="isOnSale" />
+          <label for="false">No</label>
+          <input type="radio" name="Sale" value="false" class="isOnSale" />
+          <input class="check-btn" type="submit" value="Check" />
+        </form>
+      </section>
+      <section class="vehicles-container">
+        <h1>Vehicle List</h1>
+        <div id="vehicle-list"></div>
+      </section>
+
+      <section class="special-offer-container">
+        <h2>Special Offers</h2>
+        <p>
+          <a href="./latest-model/index.html">Discover</a> our exclusive offers
+          and enjoy amazing discounts on the latest car models. Limited time
+          only!
+        </p>
+        <img
+          src="./assets/hyundai-offer.jpg"
+          alt="Hyundai Offers"
+          height="100%"
+          width="100%"
+        />
+      </section>
+    </main>
+    <hr />
+    <footer>
+      <p>Address: 123 main Street, Romania</p>
+      <p>Phone: +40 234 567 890</p>
+      <p>&copy; 2024 Hyundai Car Shop. All rights reserved.</p>
+    </footer>
+  </body>
+
+  <script src="./script/main.js"></script>
+</html>

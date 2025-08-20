@@ -1,0 +1,18 @@
+Sesiunea Q&A Live - 06.08.2025 ❓🧑‍💻- Exercitiu Recomandat
+
+Salut, dupa cum am discutat atasez aici mini-proiectul de filtrare pe masini. 
+Aveti in sesiunea inregistrata de Q&A toate explicatiile cum a fost realizata 
+logica de filtrare.
+
+Cele doua cerinte pentru continuarea exercitiului sunt:
+
+Adaugarea unui input de tip 'text' si adaugarea logicii de search folosind 
+key-ul 'model' din array-ul de obiecte
+
+Adaugarea 2 Radio Buttons care sa aplice filtrarea pe key-ul 'isOnSale'. 
+Cele 2 Radio Buttons sa aiba doua valori: 'Yes' si 'No' si sa filtreze cand 
+valoarea key-ului 'isOnSale' este
+ true sau false https://www.w3schools.com/tags/att_input_type_radio.asp
+Va rog sa incarcati rezolvarea pe github si o sa discutam la urmatorul Q&A 
+live de saptamana viitoare despre solutiile gasite.
+Pentru orice intrebare nu ezitati sa-mi scrieti. Mult spor!
