@@ -1,97 +1,73 @@
 // Masinile incarcate initial - fara filtrare
-const cars = [
-  {
-    id: 1,
-    brand: 'Hyundai',
-    model: 'Kona',
-    price: 50000,
-    image: './assets/hyundai-kona.jpg',
-    isOnSale: false,
-  },
-  {
-    id: 2,
-    brand: 'Hyundai',
-    model: 'Tucson',
-    price: 45000,
-    image: './assets/hyundai-tucson.jpg',
-    isOnSale: true,
-  },
-  {
-    id: 3,
-    brand: 'Hyundai',
-    model: 'Santa Fe',
-    price: 75000,
-    image: './assets/hyundai-santa-fe.jpg',
-    isOnSale: true,
-  },
-  {
-    id: 4,
-    brand: 'Hyundai',
-    model: 'i-30',
-    price: 35000,
-    image: './assets/hyundai-i30.jpg',
-    isOnSale: false,
-  },
-];
-
+import { CARS } from './constants.js';
 const priceSlider = document.getElementById('price-slider');
 const priceValue = document.getElementById('price-value');
 const selectOptionSort = document.getElementById('sort-options');
 const searchCar = document.querySelector('#searchCar');
-const radioForm = document.querySelector('#radioForm');
-const searchForm = document.querySelector('#searchForm');
+const filterForm = document.querySelector('#filterForm');
+const radioSale = document.querySelectorAll('input[name="Sale"]');
 
 // Cautarea masinilor dupa key-ul 'model'
-searchForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  searchWishCar();
+// searchForm.addEventListener('submit', (e) => {
+//   e.preventDefault();
+//   searchWishCar();
+// });
+
+searchCar.addEventListener('input', (e) => {
+  searchWishCar(e.target.value);
 });
 
-function searchWishCar() {
-  const wishCar = searchCar.value;
-  cars.forEach((car) => {
-    if (car.model !== wishCar) return;
-    if (wishCar) {
-      console.log(wishCar);
-      const vehicleListContainer = document.getElementById('vehicle-list');
-      vehicleListContainer.innerHTML = ''; // Stergerea initiala a datelor din container
+function searchWishCar(searchItem) {
+  const vehicleListContainer = document.getElementById('vehicle-list');
+  vehicleListContainer.innerHTML = ''; // Stergerea initiala a datelor din container
+  CARS.forEach((car) => {
+    if (!car.model.toLowerCase().includes(searchItem.toLowerCase())) return;
+    if (searchItem) {
       const carArticle = document.createElement('article');
       carArticle.innerHTML = `
-        <img src="${car.image}" alt="Hyundai ${
+      <div class="article"
+        <img src="${car.image}" alt="${
         car.model
-      }" width="400" height="250" />
-        <h2>Brand: ${car.brand}</h2>
+      }" class="img-article" width="400" height="250" />
+        <h2>${car.brand}</h2>
         <h3>Model: ${car.model}</h3>
         <p>Price: <b>$${car.price.toLocaleString()}</b></p>
+        </div>
       `;
       vehicleListContainer.appendChild(carArticle);
-      searchCar.value = '';
     }
   });
 }
 
 // Filtrarea dupa key-ul 'isOnSale'
-radioForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  isOnSaleCars();
+// radioForm.addEventListener('submit', (e) => {
+//   e.preventDefault();
+//   isOnSaleCars();
+// });
+
+radioSale.forEach((radioBtn) => {
+  radioBtn.addEventListener('change', (e) => {
+    isOnSaleCars(e.target.value);
+  });
 });
 
-function isOnSaleCars() {
+function isOnSaleCars(isOnSale) {
   const vehicleListContainer = document.getElementById('vehicle-list');
   vehicleListContainer.innerHTML = ''; // Stergerea initiala a datelor din container
-  const selectedRadio = document.querySelector('.isOnSale:checked');
-  const checkedValue = selectedRadio ? selectedRadio.value === 'true' : null;
+  const checkedValue = isOnSale ? isOnSale === 'true' : null;
   console.log(checkedValue);
-  cars.forEach((car) => {
+  CARS.forEach((car) => {
     if (checkedValue === null || car.isOnSale === checkedValue) {
       const carArticle = document.createElement('article');
       carArticle.innerHTML = `
-        <img src="${car.image}" alt="Hyundai ${
+      <div class= "article">
+        <img src="${car.image}" alt="${
         car.model
-      }" width="400" height="250" />
-        <h2>Brand: ${car.brand}</h2>
+      }" class="img-article" width="400" height="250" />
+        <h2>${car.brand}</h2>
         <h3>Model: ${car.model}</h3>
         <p>Price: <b>$${car.price.toLocaleString()}</b></p>
+        </div>
       `;
       vehicleListContainer.appendChild(carArticle);
     }
@@ -106,19 +82,21 @@ function renderCars(carList) {
   carList.forEach((car) => {
     const carArticle = document.createElement('article');
     carArticle.innerHTML = `
-        <img src="${car.image}" alt="Hyundai ${
+    <div class="article">
+        <img src="${car.image}" alt="${
       car.model
-    }" width="400" height="250" />
-        <h2>Brand: ${car.brand}</h2>
+    }" class="img-article" width="400" height="250" />
+        <h2>${car.brand}</h2>
         <h3>Model: ${car.model}</h3>
         <p>Price: <b>$${car.price.toLocaleString()}</b></p>
+        </div>
       `;
     vehicleListContainer.appendChild(carArticle);
   });
 }
 
 function setMaxPriceInSlider() {
-  const maxCarPrice = Math.max(...cars.map((car) => car.price));
+  const maxCarPrice = Math.max(...CARS.map((car) => car.price));
   priceSlider.max = maxCarPrice; // Valoarea maxima
   priceSlider.value = maxCarPrice; // Valoarea initiala a silder-ului
   priceValue.textContent = `$${maxCarPrice.toLocaleString()}`;
@@ -126,19 +104,19 @@ function setMaxPriceInSlider() {
 
 // Filtrarea masinilor bazata pe alegerile utilizatorului
 function filterCars() {
-  const selectedModels = Array.from(
+  const selectedBrand = Array.from(
     document.querySelectorAll('input[type="checkbox"]:checked')
   ).map((checkBox) => checkBox.value);
 
-  console.log(selectedModels);
+  console.log(selectedBrand);
   const maxPrice = parseInt(priceSlider.value);
   const sortOption = selectOptionSort.value;
 
-  let filteredCars = cars.filter((car) => {
-    const matchesModel =
-      selectedModels.length === 0 || selectedModels.includes(car.model);
+  let filteredCars = CARS.filter((car) => {
+    const matchesBrand =
+      selectedBrand.length === 0 || selectedBrand.includes(car.brand);
     const matchesPrice = car.price <= maxPrice;
-    return matchesModel && matchesPrice;
+    return matchesBrand && matchesPrice;
   });
 
   // Sortarea elementelor bazata pe
@@ -182,4 +160,4 @@ selectOptionSort.addEventListener('change', filterCars);
 // Setarea valorii initiale pentru price slider
 setMaxPriceInSlider();
 // Randarea initiala a masinilor
-renderCars(cars);
+renderCars(CARS);
