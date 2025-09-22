@@ -19,6 +19,16 @@
 
     <div class="filter-container">
       <form id="filterForm" class="filter-form">
+        <div class="select-brand-container">
+          <p>Select Brand:</p>
+          <label for="hunday">Hunday</label>
+          <input type="checkbox" id="hunday" name="brand" value="Hunday" />
+          <label for="bmw">BMW</label>
+          <input type="checkbox" id="bmw" name="brand" value="Bmw" />
+          <label for="vw">VW</label>
+          <input type="checkbox" id="vw" name="brand" value="Vw" />
+        </div>
+
         <div class="search-input">
           <label for="searchCar">Search you dream car: </label>
           <input
@@ -29,23 +39,25 @@
             class="search"
           />
         </div>
+
+        <div class="sale-container">
+          <p>Is on sale</p>
+          <label for="true">Yes</label>
+          <input type="radio" name="sale" value="true" class="isOnSale" />
+          <label for="false">No</label>
+          <input type="radio" name="sale" value="false" class="isOnSale" />
+        </div>
+
         <div const="sort-container">
           <label for="sort-options">Sort by:</label>
-          <select id="sort-options" name="sort-options" class="sort-options">
+          <select id="sort-options" name="sortOptions" class="sort-options">
             <option value="price-asc">Price: Low to High</option>
             <option value="price-desc">Price: High to Low</option>
             <option value="alphabetic-asc">Alphabetic: A to Z</option>
             <option value="alphabetic-desc">Alphabetic: Z to A</option>
           </select>
         </div>
-        <div class="select-brand-container">
-          <p>Select Brand:</p>
-          <label for="hunday">Hunday</label>
-          <input type="checkbox" id="hunday" name="brand" value="Hunday" />
-          <label for="bmw">BMW</label>
-          <input type="checkbox" id="bmw" name="brand" value="Bmw" />
-        </div>
-        <br />
+
         <div class="price-container">
           <label for="price-slider">Price range:</label>
           <input
@@ -58,17 +70,9 @@
             value="50000"
             class="price-class"
           />
-
           <span id="price-value"></span>
         </div>
-        <br />
-        <div class="sale-container">
-          <p>Is on sale</p>
-          <label for="true">Yes</label>
-          <input type="radio" name="Sale" value="true" class="isOnSale" />
-          <label for="false">No</label>
-          <input type="radio" name="Sale" value="false" class="isOnSale" />
-        </div>
+
         <input class="search-btn" id="searchBtn" type="submit" value="Submit" />
       </form>
     </div>
@@ -79,7 +83,7 @@
         and enjoy amazing discounts on the latest car models. Limited time only!
       </p>
       <img
-        src="./assets/hyundai-offer.jpg"
+        src="./assets/hyundai-offer.png"
         alt="Hyundai Offers"
         height="100%"
         width="100%"
